@@ -10,21 +10,8 @@ using System.Threading.Tasks;
 
 namespace Masrofy.BLL.Models
 {
-    //public enum ExpenseType
-    //{
-    //    Food ,
-    //    Clothes ,
-    //    Communications,
-    //    Entertainment,
-    //    Saving_amount ,
-    //    Pay_off_a_debt,
-        
-
-    //}
-
     public class ExpenseVM
     {
-
         public int Id { get; set; }
         //public string Name { get; set; }
         public double Amount { get; set; }

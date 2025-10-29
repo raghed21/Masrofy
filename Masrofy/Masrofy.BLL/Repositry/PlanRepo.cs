@@ -27,31 +27,34 @@ namespace Masrofy.BLL.Repositry
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
 
-            if (userPlan == null)
+            if (userPlan == null && income>0)
             {
-                Plan p = new Plan();
-                double rest;
-                double Eaccount;//لكل حساب كم ياخذ
-                p.Charity = income * 0.01;
-                rest = income - p.Charity;
-                Eaccount = rest / 3;
-                p.PersonalAccount = Eaccount;
-                p.Obligation = Eaccount;
-                p.SavingAmount = Eaccount;
-                p.Income = income;
-                p.IdentityUserId = userId;
-                await db.Plans.AddAsync(p);
-
+               
+                    Plan p = new Plan();
+                    double rest;
+                    double Eaccount;//لكل حساب كم ياخذ
+                    p.Charity = income * 0.01; //income=100 cha=1
+                    rest = income - p.Charity;//rest=99
+                    Eaccount = rest / 3;//eaccount=33
+                    p.PersonalAccount = Eaccount;
+                    p.Obligation = Eaccount;
+                    p.SavingAmount = Eaccount;
+                    p.Income = income;//100
+                    p.IdentityUserId = userId;
+                    await db.Plans.AddAsync(p);
             } else
             {
-                userPlan.Income = userPlan.Income+ income;
-                userPlan.Charity = (income * 0.01) + userPlan.Charity;
-                double rest = userPlan.Income - userPlan.Charity;
-                double Eaccount = rest / 3;
-                userPlan.PersonalAccount = Eaccount;
-                userPlan.Obligation = Eaccount;
-                userPlan.SavingAmount = Eaccount;
-                db.Plans.Update(userPlan);
+                if (income > 0) { 
+                    userPlan.Income = userPlan.Income + income;//110
+                    userPlan.Charity = (income * 0.01) + userPlan.Charity;//1.1
+                    double rest = userPlan.Income - userPlan.Charity;//108.9
+                    double Eaccount = rest / 3;//36.3
+                    userPlan.PersonalAccount = Eaccount;
+                    userPlan.Obligation = Eaccount;
+                    userPlan.SavingAmount = Eaccount;
+                    db.Plans.Update(userPlan);
+                }
+
             }
 
                 await db.SaveChangesAsync();
@@ -61,7 +64,7 @@ namespace Masrofy.BLL.Repositry
         //Step1
         public async Task<Plan> GetPlanAsyncByUserId(string userId)
         {
-            return db.Plans
+            return  db.Plans
                 .Where(p => p.IdentityUserId == userId)
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
@@ -75,15 +78,17 @@ namespace Masrofy.BLL.Repositry
                 case ExpenseType.Clothes:
                 case ExpenseType.Communications:
                 case ExpenseType.Entertainment:
-                    UserPlan.PersonalAccount -= model.Amount;
-                    break;
-
+                    if(model.Amount>0 && model.Amount<= UserPlan.PersonalAccount)
+                        UserPlan.PersonalAccount -= model.Amount;
+                         break;
                 case ExpenseType.Saving_amount:
-                    UserPlan.SavingAmount -= model.Amount;
+                    if(model.Amount>0 && model.Amount <= UserPlan.SavingAmount)
+                     UserPlan.SavingAmount -= model.Amount; 
                     break;
 
                 case ExpenseType.Pay_off_a_debt:
-                    UserPlan.Obligation -= model.Amount;
+                    if (model.Amount > 0 && model.Amount <= UserPlan.Obligation)
+                        UserPlan.Obligation -= model.Amount;
                     break;
             }
            db.Plans.Update(UserPlan);

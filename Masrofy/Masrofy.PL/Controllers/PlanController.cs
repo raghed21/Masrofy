@@ -55,9 +55,18 @@ namespace Masrofy.PL.Controllers
         [HttpPost]
         public async Task <IActionResult> Index(PlanVM a)
         {
+
             string userId = userManager.GetUserId(User);
+
             if (userId != null)
             {
+                //if (!ModelState.IsValid)
+                //{
+                //    if (a.Income > 0) { 
+                //    TempData["ErrorMessage"] = "Please enter a Valid income greater than 0.";
+                //    }
+                //    return RedirectToAction("Index", "Home");
+                //}
                 await plan.GeneratePlanAsync(a.Income, userId);
 
             }

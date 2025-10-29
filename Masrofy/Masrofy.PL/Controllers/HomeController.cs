@@ -11,6 +11,10 @@ namespace Masrofy.PL.Controllers
             return View();
             //return Content("صفحة Index وصلت لها بنجاح");
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
     }
 }

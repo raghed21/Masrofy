@@ -52,12 +52,6 @@ namespace Masrofy.PL.Controllers
             if (userId == null)
                 return Unauthorized();
 
-            //if (!ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError("", "Invalid Input");
-            //    return View(newExpense);
-            //}
-
             var expenseEntity = new Expense
             {
                 Amount = newExpense.Amount,
@@ -69,7 +63,7 @@ namespace Masrofy.PL.Controllers
             await expense.AddExpense(expenseEntity);
 
             var UserPlan = await plan.GetPlanAsyncByUserId(userId);
-
+            
             plan.Clac(UserPlan, expenseEntity);
 
             //return RedirectToAction("Index", "Plan");

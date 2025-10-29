@@ -1,7 +1,9 @@
 ﻿using Masrofy.BLL.Interfaces;
+using Masrofy.BLL.Models;
 using Masrofy.DAL.Database;
 using Masrofy.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +24,11 @@ namespace Masrofy.BLL.Repositry
         }
         public async Task AddExpense(Expense e)
         {
-            db.Expenses.Add(e);
-            db.SaveChanges();
+            if(e.Amount>0)
+            {
+                db.Expenses.Add(e);
+                await db.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<Expense>> GetAllExpensesByUserId(string userId)

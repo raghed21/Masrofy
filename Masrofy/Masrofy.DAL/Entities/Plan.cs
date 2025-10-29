@@ -26,9 +26,8 @@ namespace Masrofy.DAL.Entities
 
 
         //------------------------------------------------------
-        public ApplicationUser IdentityUser { get; set; }
+        public ApplicationUser IdentityUser { get; set; }//NP
 
-        //public int UserProfileId { get; set; }
-        //public UserProfile user { get; set; } //Navigation prop
+        
     }
 }

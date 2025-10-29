@@ -27,7 +27,7 @@ namespace Masrofy.DAL.Entities
         public double Amount { get; set; }
         public DateTime Date { get; set; }
         public ExpenseType Type { get; set; } //Enum for type of expense
-        public string ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }//FK
         //--------------------------------------------------------------------
         public ApplicationUser ApplicationUser { get; set; } //NP
 
