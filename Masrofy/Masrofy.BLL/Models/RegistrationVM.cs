@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Masrofy.BLL.Models
 {
-    public class RegestrationVM
+    public class RegistrationVM
     {
         [Required(ErrorMessage ="FullName Required")]
-        public String FullName { get; set; }
+        public string FullName { get; set; }
 
 
         [Required(ErrorMessage="Email Required")]
         [EmailAddress(ErrorMessage="Email Invalid")]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
 
         [Required(ErrorMessage ="Password Required")]
         [MinLength(5, ErrorMessage="Min length is 5")]
         //[Compare("Password", ErrorMessage="Password not match")]
-        public String Password { get; set; }
+        public string Password { get; set; }
 
         public bool IsAgree { get; set; }
     }

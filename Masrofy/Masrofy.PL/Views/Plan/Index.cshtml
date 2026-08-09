@@ -21,7 +21,7 @@
                         }
                         else
                         {
-                            <h3>@Model.Obligation</h3>
+                            <h3>@Model.Obligation.ToString("0.##")</h3>
                             <p>التزامات</p>
                         }                     
                     </div>
@@ -51,7 +51,7 @@
                         }
                         else
                         {
-                            <h3>@Model.SavingAmount</h3>
+                            <h3>@Model.SavingAmount.ToString("0.##")</h3>
                             <p>استثمارات</p>
                         }
                     </div>
@@ -81,7 +81,7 @@
                         }
                         else
                         {
-                            <h3>@Model.PersonalAccount</h3>
+                            <h3>@Model.PersonalAccount.ToString("0.##")</h3>
                             <p>الشخصي</p>
                         }
                     </div>
@@ -111,7 +111,7 @@
                         }
                         else
                         {
-                            <h3>@Model.Charity</h3>
+                            <h3>@Model.Charity.ToString("0.##")</h3>
                             <p>صدقة</p>
                         }
                     </div>

@@ -1,4 +1,12 @@
-﻿
+﻿@using Masrofy.DAL.Extends
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> userManager;
+
+@{
+    var user = await userManager.GetUserAsync(User);
+    var userName = user?.UserName ?? "Guest";
+}
+
 <!doctype html>
 <html lang="en">
 <!--begin::Head-->
@@ -65,7 +73,7 @@
                             <img src="~/img/Share Icon - more than 250_000 free icons.jpg"
                                  class="user-image rounded-circle shadow"
                                  alt="User Image" />
-                            <span class="d-none d-md-inline">Raghad Alfitory</span>
+                            <span class="d-none d-md-inline">@userName</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
@@ -74,8 +82,8 @@
                                      class="rounded-circle shadow"
                                      alt="User Image" />
                                 <p>
-                                    Raghad alfitory
-                                    <small>Member since July. 2025</small>
+                                    @userName
+                                    <small>Member since July 2025</small>
                                 </p>
                             </li>
                             <!--end::User Image-->

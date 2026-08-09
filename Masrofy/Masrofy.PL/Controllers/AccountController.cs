@@ -17,12 +17,12 @@ namespace Masrofy.PL.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        public IActionResult Regestration() //sign up
+        public IActionResult Registration() //sign up
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Regestration(RegestrationVM model) //sign up
+        public async Task<IActionResult> Registration(RegistrationVM model) //sign up
         {
             try
             {
