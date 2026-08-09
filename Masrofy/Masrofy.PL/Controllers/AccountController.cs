@@ -30,8 +30,9 @@ namespace Masrofy.PL.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    IsAgree = model.IsAgree
-
+                    IsAgree = model.IsAgree,
+                    FullName = model.FullName,
+                    CreatedAt = DateTime.Now
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

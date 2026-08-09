@@ -12,10 +12,10 @@
 <!--begin::Head-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>Masrofy | Dashboard</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE v4 | Dashboard" />
+    <meta name="title" content="Masrofy | Dashboard" />
     <meta name="author" content="ColorlibHQ" />
     <meta name="description"
           content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS." />
@@ -73,7 +73,7 @@
                             <img src="~/img/Share Icon - more than 250_000 free icons.jpg"
                                  class="user-image rounded-circle shadow"
                                  alt="User Image" />
-                            <span class="d-none d-md-inline">@userName</span>
+                            <span class="d-none d-md-inline">@user.FullName</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
@@ -82,8 +82,8 @@
                                      class="rounded-circle shadow"
                                      alt="User Image" />
                                 <p>
-                                    @userName
-                                    <small>Member since July 2025</small>
+                                    @user.FullName
+                                    <small>Member since @user.CreatedAt</small>
                                 </p>
                             </li>
                             <!--end::User Image-->
@@ -111,7 +111,7 @@
             <!--begin::Sidebar Brand-->
             <div class="sidebar-brand">
                 <!--begin::Brand Link-->
-                <a href="./index.html" class="brand-link">
+                <a asp-action="Index" asp-controller="Plan" class="brand-link">
                     <!--begin::Brand Image-->
                     <i class="bi bi-wallet2"></i>
 

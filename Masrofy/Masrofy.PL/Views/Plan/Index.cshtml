@@ -2,11 +2,11 @@
 @{
     ViewBag.Title = "Plan Index";
 }
-<h1>Monthly Plan Page</h1>
 <!--begin::App Content-->
 <div class="app-content">
     <!--begin::Container-->
     <div class="container-fluid">
+        <h2>Monthly Plan</h2>
         <!--begin::Row-->
         <div class="row">
             <!--begin::Col-->
@@ -16,13 +16,13 @@
                     <div class="inner">
                         @if (Model == null)
                         {
+                            <h4>حساب الالتزامات</h4>
                             <h3>Nothing</h3>
-                            <p>التزامات</p>
                         }
                         else
                         {
+                            <h4>حساب الالتزامات</h4>
                             <h3>@Model.Obligation.ToString("0.##")</h3>
-                            <p>التزامات</p>
                         }                     
                     </div>
                     <svg class="small-box-icon"
@@ -46,13 +46,13 @@
                     <div class="inner">
                         @if (Model == null)
                         {
+                            <h4>حساب الاستثمارات</h4>
                             <h3>Nothing</h3>
-                            <p>استثمارات</p>
                         }
                         else
                         {
+                            <h4>حساب الاستثمارات</h4> 
                             <h3>@Model.SavingAmount.ToString("0.##")</h3>
-                            <p>استثمارات</p>
                         }
                     </div>
                     <svg class="small-box-icon"
@@ -76,13 +76,13 @@
                     <div class="inner">
                         @if (Model == null)
                         {
+                            <h4>الحساب الشخصي</h4>
                             <h3>Nothing</h3>
-                            <p>الشخصي</p>
                         }
                         else
                         {
+                            <h4>الحساب الشخصي</h4>
                             <h3>@Model.PersonalAccount.ToString("0.##")</h3>
-                            <p>الشخصي</p>
                         }
                     </div>
                     <svg class="small-box-icon"
@@ -106,13 +106,13 @@
                     <div class="inner">
                         @if (Model == null)
                         {
+                            <h4>حساب الصدقة</h4>
                             <h3>Nothing</h3>
-                            <p>صدقة</p>
                         }
                         else
                         {
+                            <h4>حساب الصدقة</h4>
                             <h3>@Model.Charity.ToString("0.##")</h3>
-                            <p>صدقة</p>
                         }
                     </div>
                     <svg class="small-box-icon"

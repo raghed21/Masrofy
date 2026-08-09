@@ -16,7 +16,7 @@ namespace Masrofy.BLL.Models
         [Required(ErrorMessage="Email Required")]
         [EmailAddress(ErrorMessage="Email Invalid")]
         public string Email { get; set; }
-
+        public DateTime CreatedAt { get; set; }
 
         [Required(ErrorMessage ="Password Required")]
         [MinLength(5, ErrorMessage="Min length is 5")]

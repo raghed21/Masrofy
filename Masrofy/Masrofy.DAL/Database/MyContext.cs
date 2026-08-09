@@ -19,15 +19,6 @@ namespace Masrofy.DAL.Database
         public DbSet<Plan> Plans { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<SavingGoal> SavingGoals { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        //public DbSet<ApplicationUser> AppUsers { get; set; }
 
-        //constructor 
-
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=RAGHADRM\\SQLEXPRESS ; Database=MasrofyDB ; Trusted_Connection=True ");
-        //}
     }
 }
