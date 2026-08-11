@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Masrofy.DAL.Migrations
 {
     [DbContext(typeof(MasrofyContext))]
-    [Migration("20250701223835_NewMigration")]
-    partial class NewMigration
+    [Migration("20260811015042_decimal")]
+    partial class @decimal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,42 +35,21 @@ namespace Masrofy.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("Masrofy.DAL.Entities.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("expenseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Masrofy.DAL.Entities.Plan", b =>
@@ -81,27 +60,27 @@ namespace Masrofy.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Charity")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Charity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("IdentityUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("Income")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Income")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Month")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Obligation")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Obligation")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("PersonalAccount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PersonalAccount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("SavingAmount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("SavingAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -141,12 +120,19 @@ namespace Masrofy.DAL.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAgree")
                         .HasColumnType("bit");
@@ -330,6 +316,17 @@ namespace Masrofy.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Masrofy.DAL.Entities.Expense", b =>
+                {
+                    b.HasOne("Masrofy.DAL.Extends.ApplicationUser", "ApplicationUser")
+                        .WithMany("Expenses")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
             modelBuilder.Entity("Masrofy.DAL.Entities.Plan", b =>
                 {
                     b.HasOne("Masrofy.DAL.Extends.ApplicationUser", "IdentityUser")
@@ -394,6 +391,8 @@ namespace Masrofy.DAL.Migrations
 
             modelBuilder.Entity("Masrofy.DAL.Extends.ApplicationUser", b =>
                 {
+                    b.Navigation("Expenses");
+
                     b.Navigation("Plans");
                 });
 #pragma warning restore 612, 618

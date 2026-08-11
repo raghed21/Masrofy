@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Masrofy.DAL.Migrations
 {
-    [DbContext(typeof(MyContext))]
+    [DbContext(typeof(MasrofyContext))]
     partial class MyContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -30,8 +30,8 @@ namespace Masrofy.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
@@ -50,32 +50,6 @@ namespace Masrofy.DAL.Migrations
                     b.ToTable("Expenses");
                 });
 
-            modelBuilder.Entity("Masrofy.DAL.Entities.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("expenseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Notifications");
-                });
-
             modelBuilder.Entity("Masrofy.DAL.Entities.Plan", b =>
                 {
                     b.Property<int>("Id")
@@ -84,27 +58,27 @@ namespace Masrofy.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<double>("Charity")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Charity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("IdentityUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("Income")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Income")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Month")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Obligation")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Obligation")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("PersonalAccount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PersonalAccount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("SavingAmount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("SavingAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -144,12 +118,19 @@ namespace Masrofy.DAL.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAgree")
                         .HasColumnType("bit");

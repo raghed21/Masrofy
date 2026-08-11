@@ -10,10 +10,9 @@ namespace Masrofy.DAL.Extends
 {
     public class ApplicationUser:IdentityUser
     {
-        public bool IsAgree {  get; set; }
-
-        
-        
+        public bool IsAgree { get; set; } = true;
+        public string FullName { get; set; }
+        public DateTime CreatedAt { get; set; }
         //------------------------------------------------------------------------------
         public virtual List<Plan> Plans { get; set; } //Navigation property for Plan
         public virtual List<Expense> Expenses { get; set; } = new();  // قائمة المصروفات 

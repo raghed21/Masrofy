@@ -16,9 +16,9 @@ namespace Masrofy.BLL.Repositry
     {
 
 
-        private readonly MyContext db;
+        private readonly MasrofyContext db;
 
-        public ExpenseRepo(MyContext db)
+        public ExpenseRepo(MasrofyContext db)
         {
             this.db = db;
         }

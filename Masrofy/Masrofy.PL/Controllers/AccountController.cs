@@ -17,12 +17,12 @@ namespace Masrofy.PL.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        public IActionResult Regestration() //sign up
+        public IActionResult Registration() //sign up
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Regestration(RegestrationVM model) //sign up
+        public async Task<IActionResult> Registration(RegistrationVM model) //sign up
         {
             try
             {
@@ -30,8 +30,9 @@ namespace Masrofy.PL.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    IsAgree = model.IsAgree
-
+                    IsAgree = model.IsAgree,
+                    FullName = model.FullName,
+                    CreatedAt = DateTime.Now
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -68,7 +69,7 @@ namespace Masrofy.PL.Controllers
                     var result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Plan");
                     }
                     else
                     {

@@ -24,7 +24,7 @@ builder.Services.AddAutoMapper(typeof(DomainProfile));
 
 //  Connection String
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<MyContext>(options =>
+builder.Services.AddDbContext<MasrofyContext>(options =>
 options.UseSqlServer(connectionString));
 
 builder.Services
@@ -48,7 +48,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 5;
     options.Password.RequiredUniqueChars = 0;
-}).AddEntityFrameworkStores<MyContext>();
+}).AddEntityFrameworkStores<MasrofyContext>();
 
 // 
 var app = builder.Build();
@@ -74,6 +74,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Plan}/{action=Index}/{id?}");
 
 app.Run();
