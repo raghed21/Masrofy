@@ -1,36 +1,37 @@
 ﻿@model Masrofy.BLL.Models.PlanVM
 @{
-    ViewBag.Title = "Generate new plan";
+    ViewData["Title"] = "Generate new plan";
 }
 
-<!--begin::Col-->
-<div class="col-md-6">
-    <!--begin::Quick Example-->
-    <div class="card card-primary card-outline mb-4">
-        <!--begin::Header-->
-        <div class="card-header">
-            <div class="card-title">
-                Income division
-            </div>
-        </div>
-        <!--end::Header-->
-        <!--begin::Form-->
-        <form asp-action="Create" asp-controller="Plan">
-            <!--begin::Body-->
-            <div class="card-body">
-                <div class="mb-3">
-                    <label asp-for="@Model.Income" class="form-label">Input your Income</label>
-                    <input type="text" asp-for="@Model.Income" class="form-control" />
-                </div>
-            </div>
-            <!--end::Body-->
-            <!--begin::Footer-->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-success">Generate Your Monthly Plan</button>
-            </div>
-            <!--end::Footer-->
-        </form>
-        <!--end::Form-->
+<!--begin::Form Validation-->
+<div class="card card-info card-outline mb-4">
+    <!--begin::Header-->
+    <div class="card-header">
+        <div class="card-title">Income division</div>
     </div>
+    <!--end::Header-->
+    <!--begin::Form-->
+    <form class="needs-validation" asp-action="Create" asp-controller="Plan" method="post">
+        <!--begin::Body-->
+        <div class="card-body">
+            <!--begin::Row-->
+            <div class="row g-3">
+                <!--begin::Col-->
+                <div class="col-md-6">
+                    <label asp-for="Income" class="form-label">Input your Income</label>
+                    <input asp-for="Income" type="text" class="form-control" />
+                    <div class="valid-feedback">Looks good!</div>
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Body-->
+        <!--begin::Footer-->
+        <div class="card-footer">
+            <button class="btn btn-info" type="submit">Generate Your Monthly Plan</button>
+        </div>
+        <!--end::Footer-->
+    </form>
+    <!--end::Form-->
 </div>
-<!--end::Quick Example-->
