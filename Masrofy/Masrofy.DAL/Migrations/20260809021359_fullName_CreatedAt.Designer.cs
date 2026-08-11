@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Masrofy.DAL.Migrations
 {
-    [DbContext(typeof(MyContext))]
+    [DbContext(typeof(MasrofyContext))]
     [Migration("20260809021359_fullName_CreatedAt")]
     partial class fullName_CreatedAt
     {

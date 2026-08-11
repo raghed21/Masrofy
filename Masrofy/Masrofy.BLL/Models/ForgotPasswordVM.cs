@@ -11,6 +11,6 @@ namespace Masrofy.BLL.Models
     {
         [Required(ErrorMessage = "Email Required")]
         [EmailAddress(ErrorMessage = "Email Invalid")]
-        public required String Email { get; set; }
+        public required string Email { get; set; }
     }
 }

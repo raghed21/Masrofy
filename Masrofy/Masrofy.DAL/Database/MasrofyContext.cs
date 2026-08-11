@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Masrofy.DAL.Database
 {
-    public class MyContext : IdentityDbContext<ApplicationUser>
+    public class MasrofyContext : IdentityDbContext<ApplicationUser>
     {
-        public MyContext(DbContextOptions<MyContext> opt) : base(opt)
+        public MasrofyContext(DbContextOptions<MasrofyContext> opt) : base(opt)
         {
         }
 

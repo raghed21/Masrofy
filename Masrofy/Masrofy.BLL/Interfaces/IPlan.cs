@@ -10,7 +10,7 @@ namespace Masrofy.BLL.Interfaces
 {
     public interface IPlan
     {
-        Task GeneratePlanAsync(double income, string userId);
+        Task GeneratePlanAsync(decimal income, string userId);
         public Task<Plan> GetPlanAsyncByUserId(string userId);
         public  Task Clac(Plan UserPlan, Expense model);
     }

@@ -1,0 +1,38 @@
+﻿@model Masrofy.BLL.Models.PlanVM
+@{
+    ViewBag.Title = "Generate new plan";
+}
+
+<!--begin::Col-->
+<div class="col-md-6">
+    <!--begin::Quick Example-->
+    <div class="card card-primary card-outline mb-4">
+        <!--begin::Header-->
+        <div class="card-header">
+            <div class="card-title">
+                Income division
+            </div>
+        </div>
+        <!--end::Header-->
+        <!--begin::Form-->
+        <form asp-action="Add" asp-controller="Plan">
+            <!--begin::Body-->
+            <div class="card-body">
+                <div class="mb-3">
+                    <label asp-for="@Model.Income" class="form-label">Input your Income</label>
+                    <input type="text" asp-for="@Model.Income" class="form-control" />
+                </div>
+            </div>
+            <!--end::Body-->
+            <!--begin::Footer-->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success">Generate your income split</button>
+            </div>
+            <!--end::Footer-->
+        </form>
+        <!--end::Form-->
+    </div>
+</div>
+<!--end::Quick Example-->
+@* Just for Test *@
+@* <a class="btn btn-success" asp-action="Index" asp-controller="Plan">Generate Your Monthly Plan</a> *@

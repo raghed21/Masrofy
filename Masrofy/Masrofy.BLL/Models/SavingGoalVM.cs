@@ -9,7 +9,7 @@ namespace Masrofy.BLL.Models
     public class SavingGoalVM
     {
         public int Id { get; set; }
-        public double AmountSaved { get; set; }
+        public decimal AmountSaved { get; set; }
         public DateTime Date { get; set; }
     }
 }

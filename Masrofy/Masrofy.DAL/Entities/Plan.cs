@@ -15,12 +15,12 @@ namespace Masrofy.DAL.Entities
 
         }
         public int Id { get; set; } //PK 
-        public double Income { get; set; }
-        public double Charity { get; set; } //حساب صدقة
-        public double SavingAmount { get; set; }
-        public double PersonalAccount { get; set; } //حساب شخصي 
+        public decimal Income { get; set; }
+        public decimal Charity { get; set; } //حساب صدقة
+        public decimal SavingAmount { get; set; }
+        public decimal PersonalAccount { get; set; } //حساب شخصي 
 
-        public double Obligation { get; set; } //التزامات
+        public decimal Obligation { get; set; } //التزامات
         public DateTime Month { get; set; }
         public string IdentityUserId { get; set; } //FK
 

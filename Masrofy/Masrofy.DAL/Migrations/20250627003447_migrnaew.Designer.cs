@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Masrofy.DAL.Migrations
 {
-    [DbContext(typeof(MyContext))]
+    [DbContext(typeof(MasrofyContext))]
     [Migration("20250627003447_migrnaew")]
     partial class migrnaew
     {

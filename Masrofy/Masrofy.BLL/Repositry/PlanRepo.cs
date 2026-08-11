@@ -14,13 +14,13 @@ namespace Masrofy.BLL.Repositry
 {
     public class PlanRepo : IPlan
     {
-      private readonly   MyContext db ;
+      private readonly   MasrofyContext db ;
        
-        public PlanRepo(MyContext db)
+        public PlanRepo(MasrofyContext db)
         {
             this.db = db;
         }
-        public async Task GeneratePlanAsync(double income, string userId)
+        public async Task GeneratePlanAsync(decimal income, string userId)
         {
             var userPlan = db.Plans
                 .Where(p => p.IdentityUserId == userId)
@@ -31,10 +31,10 @@ namespace Masrofy.BLL.Repositry
             {
                
                     Plan p = new Plan();
-                    double rest;
-                    double Eaccount;//لكل حساب كم ياخذ
-                    p.Charity = income * 0.01; //income=100 cha=1
-                    rest = income - p.Charity;//rest=99
+                    decimal rest;
+                    decimal Eaccount;//لكل حساب كم ياخذ
+                    p.Charity = income * 0.01m; //m at the end to treate it as decimal
+                rest = income - p.Charity;//rest=99
                     Eaccount = rest / 3;//eaccount=33
                     p.PersonalAccount = Eaccount;
                     p.Obligation = Eaccount;
@@ -46,9 +46,9 @@ namespace Masrofy.BLL.Repositry
             {
                 if (income > 0) { 
                     userPlan.Income = userPlan.Income + income;//110
-                    userPlan.Charity = (income * 0.01) + userPlan.Charity;//1.1
-                    double rest = userPlan.Income - userPlan.Charity;//108.9
-                    double Eaccount = rest / 3;//36.3
+                    userPlan.Charity = (income * 0.01m) + userPlan.Charity;//1.1
+                    decimal rest = userPlan.Income - userPlan.Charity;//108.9
+                    decimal Eaccount = rest / 3;//36.3
                     userPlan.PersonalAccount = Eaccount;
                     userPlan.Obligation = Eaccount;
                     userPlan.SavingAmount = Eaccount;

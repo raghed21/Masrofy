@@ -17,14 +17,14 @@ namespace Masrofy.PL.Controllers
 {
     public class ExpenseController : Controller
     {
-        private readonly MyContext _context;
+        private readonly MasrofyContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IPlan plan;
         private readonly IExpense expense;
         private readonly IMapper mapper;
 
 
-        public ExpenseController(MyContext context, UserManager<ApplicationUser> userManager, IPlan plan, IExpense expense, IMapper mapper)
+        public ExpenseController(MasrofyContext context, UserManager<ApplicationUser> userManager, IPlan plan, IExpense expense, IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
@@ -33,7 +33,7 @@ namespace Masrofy.PL.Controllers
             this.mapper = mapper;
         }
 
-        public IActionResult  Index()
+        public IActionResult Index()
         {
             var userId = _userManager.GetUserId(User);
             if (userId == null)
