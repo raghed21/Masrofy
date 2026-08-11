@@ -1,0 +1,44 @@
+﻿@model Masrofy.BLL.Models.ExpenseVM;
+@{
+    ViewData["Title"] = "Add New Expense";
+}
+    <!--begin::Form Validation-->
+    <div class="card card-info card-outline mb-4">
+        <!--begin::Header-->
+        <div class="card-header"><div class="card-title">Add new Expense</div></div>
+        <!--end::Header-->
+        <!--begin::Form-->
+
+        <form class="needs-validation" asp-action="AddExpense" asp-controller="Expense" method="post">
+            <!--begin::Body-->
+            <div class="card-body">
+                <!--begin::Row-->
+                <div class="row g-3">
+                    <!--begin::Col-->
+                    <div class="col-md-6">
+                        <label asp-for="Amount" class="form-label">Amount</label>
+                        <input asp-for="Amount" type="text" class="form-control" />
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-md-6">
+                        <label asp-for="Type" class="form-label">Category</label>
+                        <select asp-for="Type" asp-items="(SelectList)ViewBag.DepList" class="form-select">
+                            <option value="" >Choose Type</option>
+                        </select>
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Row-->
+            </div>
+            <!--end::Body-->
+            <!--begin::Footer-->
+            <div class="card-footer">
+                <button class="btn btn-info" type="submit">Add</button>
+            </div>
+            <!--end::Footer-->
+        </form>
+        </div>
+
+        <!--end::Form-->

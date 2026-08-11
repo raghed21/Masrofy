@@ -32,8 +32,19 @@ namespace Masrofy.PL.Controllers
             this.expense = expense;
             this.mapper = mapper;
         }
+        public async Task<IActionResult> Index()
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+                return Unauthorized();
 
-        public IActionResult Index()
+            var expenses = await expense.GetAllExpensesByUserId(userId);
+
+            var expensesVM = mapper.Map<IEnumerable<ExpenseVM>>(expenses);
+
+            return View(expensesVM);
+        }
+        public IActionResult Add()
         {
             var userId = _userManager.GetUserId(User);
             if (userId == null)
@@ -41,8 +52,7 @@ namespace Masrofy.PL.Controllers
 
           ViewBag.DepList =  new SelectList(Enum.GetValues(typeof(ExpenseType)).Cast<ExpenseType>()
                 .Select(e => new { Id = (int)e, Name = e.ToString() }), "Id", "Name");
-            return View();
-            
+            return View();   
         }
 
         [HttpPost]
@@ -69,20 +79,6 @@ namespace Masrofy.PL.Controllers
             //return RedirectToAction("Index", "Plan");
             return RedirectToAction("ViewExpense");
         }
-
-        public async Task<IActionResult> ViewExpense()
-        {
-            var userId = _userManager.GetUserId(User);
-            if (userId == null)
-                return Unauthorized();
-
-           var expenses = await expense.GetAllExpensesByUserId(userId);
-
-           var expensesVM = mapper.Map<IEnumerable<ExpenseVM>>(expenses);
-
-            return View(expensesVM);
-        }
-
 
     }
 }

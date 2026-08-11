@@ -11,15 +11,15 @@ namespace Masrofy.PL.Controllers
     [Authorize]
     public class PlanController : Controller
     {
-        //Design pattren(Dependency Injection)
+       //Design pattren(Dependency Injection)
        private readonly IPlan plan;
-        private readonly UserManager<ApplicationUser> userManager;
+       private readonly UserManager<ApplicationUser> userManager;
 
-        public PlanController(IPlan plan, UserManager<ApplicationUser> userManager )
-        {
+       public PlanController(IPlan plan, UserManager<ApplicationUser> userManager )
+       {
             this.plan = plan;
             this.userManager = userManager;
-        }
+       }
 
         public async Task<IActionResult> Index()
         {
@@ -46,12 +46,12 @@ namespace Masrofy.PL.Controllers
             }         
             return View();
         }
-        public IActionResult Add()
+        public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> Add(PlanVM a)
+        public async Task <IActionResult> Create(PlanVM a)
         {
 
             string userId = userManager.GetUserId(User);
